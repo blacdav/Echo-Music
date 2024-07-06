@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
+import Recent from '../components/Recent'
 
 const Dashboard = () => {
   return (
@@ -9,7 +10,12 @@ const Dashboard = () => {
         <Sidebar />
       </div>
       <div className='w-4/5'>
-        <Header />
+        <div>
+            <Header />
+        </div>
+        <div className='h-1/3'>
+            <Recent />
+        </div>
       </div>
     </main>
   )
