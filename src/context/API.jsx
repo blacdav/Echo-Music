@@ -3,9 +3,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 const APIContext = createContext();
 
 const url = process.env.APIURL;
+const key = process.env.APIKEY;
 
 export const APIProvider = ({ children }) => {
-    const [result, setResult] = useState({});
+    const [result, setResult] = useState([]);
 
     useEffect(() => {
         GetData();
@@ -16,6 +17,7 @@ export const APIProvider = ({ children }) => {
             const res = await fetch(url, {
                 method: 'GET',
                 headers: {
+                    'Authorization': `Bearer ${key}`,
                     'Context-Type': 'application/json'
                 }
             })

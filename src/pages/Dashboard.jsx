@@ -10,23 +10,24 @@ import { useAPI } from '../context/API'
 const Dashboard = () => {
   const { result } = useAPI();
   console.log(result)
+
   return (
-    <main className='grid grid-cols-6'>
-      <div className='col-span-1 hidden md:flex w-full'>
+    <main className='w-screen flex'>
+      <div className='w-1/4 hidden md:flex'>
         <Sidebar />
       </div>
-      <div className='col-span-4 w-full md:w-4/5'>
+      <div className='w-full'>
         <div>
             <Header />
         </div>
         <div>
             <Recent />
-            <div className='grid grid-cols-6 gap-10'>
-                <div className='col-span-2'><Trending /></div>
-                <div className='col-span-4'><TopPlaylists /></div>
+            <div className='grid grid-cols-1 md:grid-cols-6 md:gap-10'>
+                <div className='md:col-span-2'><Trending /></div>
+                <div className='md:col-span-4'><TopPlaylists /></div>
             </div>
         </div>
-        <div className='w-full md:w-4/5'>
+        <div className='w-full'>
             <MusicPanel />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Sidebar = () => {
   return (
-    <main>
+    <main className='w-full'>
       <div className='grid w-full h-screen px-5 py-8 bg-slate-800 text-white'>
         <h1>Echo Music</h1>
 

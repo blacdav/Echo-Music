@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopPlaylist = () => {
   return (
-    <main className='mt-5 me-5'>
+    <main className='mt-5 mx-5 md:me-5 p-3'>
       <div className='flex justify-between'>
         <h2 className='text-lg font-bold'>Top playlists for you</h2>
         <p>See all</p>

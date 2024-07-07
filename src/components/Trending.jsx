@@ -4,7 +4,7 @@ import React from 'react'
 
 const Trending = () => {
   return (
-    <main className='ms-5 mt-5 text-xs'>
+    <main className='mx-5 md:ms-5 p-3 mt-5 text-xs'>
       <div>
         <h1 className='text-lg mb-3 font-bold'>Trending</h1>
         <div className='flex justify-between mb-2'>
