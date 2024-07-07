@@ -12,7 +12,7 @@ const Dashboard = () => {
   console.log(result)
 
   return (
-    <main className='w-screen flex'>
+    <main className='w-screen flex text-sm'>
       <div className='w-1/4 hidden md:flex'>
         <Sidebar />
       </div>
@@ -29,6 +29,9 @@ const Dashboard = () => {
         </div>
         <div className='w-full'>
             <MusicPanel />
+        </div>
+        <div className='w-screen flex md:hidden'>
+          <Sidebar />
         </div>
       </div>
     </main>
