@@ -5,14 +5,17 @@ import Recent from '../components/Recent'
 import Trending from '../components/Trending'
 import TopPlaylists from '../components/TopPlaylist'
 import MusicPanel from '../components/MusicPanel'
+import { useAPI } from '../context/API'
 
 const Dashboard = () => {
+  const { result } = useAPI();
+  console.log(result)
   return (
-    <main className='flex'>
-      <div className='w-1/5'>
+    <main className='grid grid-cols-6'>
+      <div className='col-span-1 hidden md:flex w-full'>
         <Sidebar />
       </div>
-      <div className='w-4/5'>
+      <div className='col-span-4 w-full md:w-4/5'>
         <div>
             <Header />
         </div>
@@ -23,7 +26,7 @@ const Dashboard = () => {
                 <div className='col-span-4'><TopPlaylists /></div>
             </div>
         </div>
-        <div className='w-4/5'>
+        <div className='w-full md:w-4/5'>
             <MusicPanel />
         </div>
       </div>
