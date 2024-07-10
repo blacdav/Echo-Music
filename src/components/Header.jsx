@@ -13,8 +13,8 @@ const Header = () => {
         <div>
             <select name="" id="" className='bg-slate-700 w-full px-3 py-3 border-0 outline-0 rounded-full'>
                 <option value="David">O david</option>
-                <option value="David">O david</option>
-                <option value="David">O david</option>
+                <option value="David">A david</option>
+                <option value="David">B david</option>
             </select>
         </div>
       </div>

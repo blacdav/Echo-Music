@@ -17,18 +17,20 @@ const Dashboard = () => {
         <Sidebar />
       </div>
       <div className='col-span-10 w-full'>
-        <div className='fixed md:relative top-0'>
+        <div className='fixed md:relative'>
             <Header />
         </div>
-        <div className='pt-20 md:pt-0'>
+        <div className=''>
+          <div className='pt-20 md:pt-0'>
             <Recent />
-            <div className='grid grid-cols-1 md:grid-cols-6 md:gap-10'>
+            <div className='grid grid-cols-1 md:grid-cols-6'>
                 <div className='md:col-span-2'><Trending /></div>
                 <div className='md:col-span-4'><TopPlaylists /></div>
             </div>
-        </div>
-        <div className='w-full'>
-            <MusicPanel />
+          </div>
+          <div className='w-full'>
+              <MusicPanel />
+          </div>
         </div>
         <div className='w-screen pb-36 md:pb-0 flex md:hidden'>
           <Sidebar />

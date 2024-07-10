@@ -8,10 +8,10 @@ const Trending = () => {
   // console.log(tracks)
   
   return (
-    <main className='w-full px-5 md:ps-5 p-3 pt-5 text-xs'>
+    <main className='w-screen md:w-full px-5 md:ps-5 md:pe-1 p-3 pt-5 text-xs'>
       <div>
         <h1 className='text-sm md:text-lg mb-3 font-bold'>Trending</h1>
-        <div className='grid gap-3 min-h-full w-full overflow-y-scroll'>
+        <div className='grid gap-3 min-h-full w-full overflow-y-scroll no-scrollba'>
           {
             tracks.map((res) => (
               <div key={res.id} className='flex justify-between pb-2 border-b border-black md:border-none'>
