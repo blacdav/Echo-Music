@@ -2,40 +2,58 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const APIContext = createContext();
 
-const url = process.env.APIURL;
-const key = process.env.APIKEY;
+const url = import.meta.env.VITE_API_URL;
+// const key = import.meta.env.VITE_API_KEY;
+const clientId = import.meta.env.VITE_CLIENT_ID;
+// const fullUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
 
 export const APIProvider = ({ children }) => {
-    const [result, setResult] = useState([]);
+    const [artists, setArtists] = useState([]);
+    const [tracks, setTracks] = useState([]);
+    const [albums, setAlbums] = useState([]);
+    // const [playlists, setResult] = useState([]);
 
-    useEffect(() => {
-        GetData();
-    }, [])
-
-    const GetData = async () => {
+    const getData = async () => {
         try {
-            const res = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${key}`,
-                    'Context-Type': 'application/json'
-                }
-            })
+            const artistUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
+            const tracksUrl = `${url}/albums/?client_id=${clientId}&offset=0`;
+            const albumsUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
 
-            if(!res.ok) {
+            const [artistsRes, tracksRes, albumsRes] = await Promise.all([
+                fetch(artistUrl),
+                fetch(tracksUrl),
+                fetch(albumsUrl)
+            ])
+            
+            if(!artistsRes.ok) {
                 throw new Error('Network response was not ok');
             }
+            const artistsData = await artistsRes.json();
+            setArtists(artistsData.results);
 
-            const data = await res.json();
-            setResult(data);
+            if(!tracksRes.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const tracksData = await tracksRes.json();
+            setTracks(tracksData.results);
+
+            if(!albumsRes.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const albumsData = await albumsRes.json();
+            setAlbums(albumsData.results)
 
         } catch (error) {
-            console.log(error);
+            console.log(`Error Fetching data ${error}`);
         }
     }
 
+    useEffect(() => {
+        getData();
+    }, [])
+
     return(
-        <APIContext.Provider value={{result}}>
+        <APIContext.Provider value={{artists, tracks, albums}}>
             { children }
         </APIContext.Provider>
     )

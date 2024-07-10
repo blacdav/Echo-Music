@@ -1,19 +1,27 @@
 import React from 'react'
+import { useAPI } from '../context/API'
 
 const TopPlaylist = () => {
+  const { albums } = useAPI();
+
+  console.log(albums)
+  
   return (
-    <main className='mt-5 mx-5 md:me-5 p-3'>
-      <div className='flex justify-between'>
-        <h2 className='text-lg font-bold'>Top playlists for you</h2>
-        <p>See all</p>
+    <main className='w-full pt-5 px-5 md:pe-5 p-3'>
+      <div className='text-xs md:text-lg flex justify-between items-baseline'>
+        <h2 className='font-bold'>Top playlists for you</h2>
+        <p className='text-xs md:text-sm'>See all</p>
       </div>
-      <div className='flex gap-3 mt-4'>
-        <div className='bg-slate-500 rounded-lg text-center w-40 h-44 overflow-hidden'>
-            {/* <img src="#" alt="#" /> */}
-            <div className='h-32 w-40 bg-neutral-900'></div>
-            <h3 className='text-s font-bold'>Music of the Spheres</h3>
-            <p>Coldplay</p>
-        </div>
+      <div className='flex gap-3 mt-4 min-w-full overflow-x-auto'>
+        {
+          albums.map((res) => (
+            <div key={res.id} className='text-left min-w-32 h-44 overflow-hidden'>
+              <img src={res.image} alt={res.image} className='h-32 w-40 rounded-lg bg-neutral-900' />
+              <h3 className='text-xs font-bold'>{res.name}</h3>
+              <p>Coldplay</p>
+            </div>
+          ))
+        }
       </div>
     </main>
   )

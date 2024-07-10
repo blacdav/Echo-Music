@@ -1,28 +1,37 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay, faCirclePause } from '@fortawesome/free-regular-svg-icons'
-import React from 'react'
+import { useAPI } from '../context/API'
 
 const Trending = () => {
+  const { tracks } = useAPI();
+
+  // console.log(tracks)
+  
   return (
-    <main className='mx-5 md:ms-5 p-3 mt-5 text-xs'>
+    <main className='w-full px-5 md:ps-5 p-3 pt-5 text-xs'>
       <div>
         <h1 className='text-sm md:text-lg mb-3 font-bold'>Trending</h1>
-        <div className='flex justify-between mb-2'>
-            <div className='flex gap-2 items-center'>
-                {/* <img src="" alt="" /> */}
-                <div className='bg-red-400 h-12 w-12 rounded-md'></div>
-                <div>
-                    <h3 className='font-bold'>Music Name</h3>
-                    <p>Artist</p>
+        <div className='grid gap-3 min-h-full w-full overflow-y-scroll'>
+          {
+            tracks.map((res) => (
+              <div key={res.id} className='flex justify-between pb-2 border-b border-black md:border-none'>
+                <div className='flex gap-2 items-center'>
+                    <img src={res.image} alt={res.image} className='bg-red-400 border h-16 w-16 rounded-md' />
+                    <div>
+                        <h3 className='font-bold'>{res.name}</h3>
+                        <p>{res.artist_name}</p>
+                    </div>
+                </div>
+                <div className='flex items-center gap-2'>
+                    <p>3:45</p>
+                    <div className='text-lg'>
+                      <FontAwesomeIcon icon={faCirclePlay} className={`hidde`} />
+                      <FontAwesomeIcon icon={faCirclePause} className={`hidden`}/>
+                    </div>
                 </div>
             </div>
-            <div className='flex items-center gap-2'>
-                <p>3:45</p>
-                <div className='text-lg'>
-                  <FontAwesomeIcon icon={faCirclePlay} className={`hidde`} />
-                  <FontAwesomeIcon icon={faCirclePause} className={`hidden`}/>
-                </div>
-            </div>
+            ))
+          }
         </div>
       </div>
     </main>
