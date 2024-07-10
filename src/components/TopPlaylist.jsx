@@ -2,7 +2,7 @@ import React from 'react'
 import { useAPI } from '../context/API'
 
 const TopPlaylist = () => {
-  const { albums } = useAPI();
+  const { albums, artistName, setArtistName } = useAPI();
 
   console.log(albums)
   
@@ -15,8 +15,8 @@ const TopPlaylist = () => {
       <div className='flex gap-3 mt-4 min-w-full overflow-x-scroll no-scrollbar'>
         {
           albums.map((res) => (
-            <div key={res.id} className='text-left min-w-32 h-44 overflow-hidden'>
-              <img src={res.image} alt={res.image} className='h-32 w-40 rounded-lg bg-neutral-900' />
+            <div key={res.id} onClick={() => {setArtistName(res.artist_name); console.log(artistName)}} className='text-left min-w-32 h-44 overflow-hidden'>
+              <img src={res.track.image} alt={res.image} className='h-32 w-40 rounded-lg bg-neutral-900' />
               <h3 className='text-xs font-bold'>{res.name}</h3>
               <p>Coldplay</p>
             </div>

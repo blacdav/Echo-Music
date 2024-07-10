@@ -1,8 +1,11 @@
 import React from 'react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useAPI } from '../context/API'
 
 const Header = () => {
+  const { tracks, albums, artists } = useAPI();
+  
   return (
     <main className='grid items-center w-full h-20 bg-slate-400'>
       <div className='flex justify-between px-5'>

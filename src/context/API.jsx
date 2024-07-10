@@ -11,13 +11,13 @@ export const APIProvider = ({ children }) => {
     const [artists, setArtists] = useState([]);
     const [tracks, setTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
-    // const [playlists, setResult] = useState([]);
+    const [artistName, setArtistName] = useState([]);
 
     const getData = async () => {
         try {
             const artistUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
-            const tracksUrl = `${url}/albums/?client_id=${clientId}&offset=0`;
-            const albumsUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
+            const tracksUrl = `${url}/albums/tracks/?client_id=${clientId}&offset=0&artist_name=${artistName}`;
+            const albumsUrl = `${url}/albums/?client_id=${clientId}&offset=0`;
 
             const [artistsRes, tracksRes, albumsRes] = await Promise.all([
                 fetch(artistUrl),
@@ -53,7 +53,7 @@ export const APIProvider = ({ children }) => {
     }, [])
 
     return(
-        <APIContext.Provider value={{artists, tracks, albums}}>
+        <APIContext.Provider value={{artists, tracks, albums, artistName, setArtistName}}>
             { children }
         </APIContext.Provider>
     )

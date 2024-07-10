@@ -13,7 +13,7 @@ const Recent = () => {
       <div className='flex gap-3 mt-2 min-w-full overflow-x-scroll hover:cursor-pointer hover:scroll-auto no-scrollbar'>
         {
           tracks.map((res) => (
-            <div className='text-center min-w-40 h-44 overflow-hidden'>
+            <div key={res.id} className='text-center min-w-40 h-44 overflow-hidden'>
                 <img src={res.image} alt={res.image} className='h-40 w-40 rounded-lg' />
                 <h3 className='text-s font-bold'>Music of the Spheres</h3>
                 <p>Coldplay</p>
