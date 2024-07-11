@@ -117,7 +117,7 @@ const AudioPlayer = ({ track }) => {
 const Trending = () => {
   const { tracks, artistName } = useAPI();
 
-  console.log(tracks[0].tracks);
+  console.log(tracks);
 
   return (
     <main className='w-screen md:w-full px-5 md:ps-5 md:pe-1 p-3 pt-5 text-xs'>
