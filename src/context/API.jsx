@@ -5,19 +5,18 @@ const APIContext = createContext();
 const url = import.meta.env.VITE_API_URL;
 // const key = import.meta.env.VITE_API_KEY;
 const clientId = import.meta.env.VITE_CLIENT_ID;
-// const fullUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
 
 export const APIProvider = ({ children }) => {
     const [artists, setArtists] = useState([]);
     const [tracks, setTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
-    const [artistName, setArtistName] = useState([]);
+    const [artistName, setArtistName] = useState('');
 
     const getData = async () => {
         try {
-            setArtistName('Both')
             const artistUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
-            const tracksUrl = `${url}/albums/tracks/?client_id=${clientId}&offset=0&artist_name=${'Both'}`;
+            const tracksUrl = artistName ? `${url}/albums/tracks/?client_id=${clientId}&limit=1&artist_name=${artistName}` : `${url}/albums/?client_id=${clientId}&limit=1`;
+            // const tracksUrl = `${url}/albums/tracks/?client_id=${clientId}&limit=1&artist_name=${artistName}`;
             const albumsUrl = `${url}/albums/?client_id=${clientId}&offset=0`;
 
             // setArtistName('Both')
@@ -28,23 +27,19 @@ export const APIProvider = ({ children }) => {
                 fetch(albumsUrl)
             ])
             
-            if(!artistsRes.ok) {
+            if(!artistsRes.ok || !tracksRes.ok || !albumsRes.ok) {
                 throw new Error('Network response was not ok');
             }
+            
             const artistsData = await artistsRes.json();
-            setArtists(artistsData.results);
-
-            if(!tracksRes.ok) {
-                throw new Error('Network response was not ok');
-            }
             const tracksData = await tracksRes.json();
-            setTracks(tracksData.results);
-
-            if(!albumsRes.ok) {
-                throw new Error('Network response was not ok');
-            }
             const albumsData = await albumsRes.json();
-            setAlbums(albumsData.results)
+
+            console.log('Fetched data:', { artistsData, tracksData, albumsData });
+
+            setArtists(artistsData.results);
+            setTracks(tracksData.results);
+            setAlbums(albumsData.results);
 
         } catch (error) {
             console.log(`Error Fetching data ${error}`);
@@ -53,10 +48,10 @@ export const APIProvider = ({ children }) => {
 
     useEffect(() => {
         getData();
-    }, [])
+    }, [artistName])
 
     return(
-        <APIContext.Provider value={{artists, tracks, albums, artistName, setArtistName}}>
+        <APIContext.Provider value={{artists, albums, tracks, artistName, setArtistName}}>
             { children }
         </APIContext.Provider>
     )

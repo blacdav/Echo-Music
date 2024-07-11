@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAPI } from '../context/API'
 
 const Sidebar = () => {
-    const { albums } = useAPI();
+    const { tracks } = useAPI();
   return (
     <>
         <main className='w-full hidden md:flex'>
@@ -49,7 +49,7 @@ const Sidebar = () => {
                 </div>
                 <div className='grid gap-2'>
                     {
-                        albums.slice(4,8).map((res) => (
+                        tracks.slice(0, tracks.length).map((res) => (
                             <div key={res.id} className='flex items-center gap-2 hover:cursor-pointer'>
                                 <FontAwesomeIcon icon={faCirclePlay} />
                                 <p>{res.name}</p>
