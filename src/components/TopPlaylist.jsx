@@ -16,7 +16,7 @@ const TopPlaylist = () => {
         {
           albums.map((res) => (
             <div key={res.id} onClick={() => {setArtistName(res.artist_name); console.log(artistName)}} className='text-left min-w-32 h-44 overflow-hidden'>
-              <img src={res.track.image} alt={res.image} className='h-32 w-40 rounded-lg bg-neutral-900' />
+              <img src={res.image} alt={res.image} className='h-32 w-40 rounded-lg bg-neutral-900' />
               <h3 className='text-xs font-bold'>{res.name}</h3>
               <p>Coldplay</p>
             </div>

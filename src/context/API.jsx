@@ -15,9 +15,12 @@ export const APIProvider = ({ children }) => {
 
     const getData = async () => {
         try {
+            setArtistName('Both')
             const artistUrl = `${url}/artists/?client_id=${clientId}&offset=0`;
-            const tracksUrl = `${url}/albums/tracks/?client_id=${clientId}&offset=0&artist_name=${artistName}`;
+            const tracksUrl = `${url}/albums/tracks/?client_id=${clientId}&offset=0&artist_name=${'Both'}`;
             const albumsUrl = `${url}/albums/?client_id=${clientId}&offset=0`;
+
+            // setArtistName('Both')
 
             const [artistsRes, tracksRes, albumsRes] = await Promise.all([
                 fetch(artistUrl),

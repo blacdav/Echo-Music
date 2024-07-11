@@ -5,7 +5,7 @@ import React, { useState, useRef } from 'react'
 
 const AudioPlayer = ({ track }) => {
   const [isPlaying , setIsPlaying] = useState(true);
-  const audioRef = useRef(new Audio(track.zip));
+  const audioRef = useRef(new Audio(track.audio));
 
   const togglePlay = () => {
     if(isPlaying){
@@ -39,9 +39,9 @@ const AudioPlayer = ({ track }) => {
 }
 
 const Trending = () => {
-  const { tracks } = useAPI();
+  const { tracks, artistName } = useAPI();
 
-  // console.log(tracks)
+  console.log(tracks[artistName].tracks)
   
   return (
     <main className='w-screen md:w-full px-5 md:ps-5 md:pe-1 p-3 pt-5 text-xs'>
