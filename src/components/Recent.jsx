@@ -14,7 +14,7 @@ const Recent = () => {
         {
           tracks.map((res) => (
             <div key={res.id} className='text-center min-w-40 h-44 overflow-hidden'>
-                <img src={res.image} alt={res.image} className='h-40 w-40 rounded-lg' />
+                <img src={res.image} alt={res.image} className='h-40 bg-neutral-900 w-40 rounded-lg' />
                 <h3 className='text-s font-bold'>Music of the Spheres</h3>
                 <p>Coldplay</p>
             </div>

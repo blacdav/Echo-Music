@@ -17,8 +17,8 @@ const TopPlaylist = () => {
       <div className='flex gap-3 mt-4 min-w-full overflow-x-scroll no-scrollbar'>
         {
           albums.map((res) => (
-            <div key={res.id} className='text-left min-w-32 h-44 overflow-hidden'>
-              <img src={res.image} alt={res.image} className='h-32 w-40 rounded-lg bg-neutral-900' />
+            <div key={res.id} className='text-left min-w-32 h-44 md:h-60 md:min-w-56 overflow-hidden'>
+              <img src={res.image} alt={res.image} className='h-32 w-40 md:h-52 md:w-56 rounded-lg bg-neutral-900' />
               <h3 className='text-xs font-bold'>{res.name}</h3>
               <p>{res.artist_name}</p>
             </div>

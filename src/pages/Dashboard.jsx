@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
 import Recent from '../components/Recent'
@@ -8,34 +8,54 @@ import MusicPanel from '../components/MusicPanel'
 import { useAPI } from '../context/API'
 
 const Dashboard = () => {
-  const { result } = useAPI();
+  const { theme, setTheme } = useAPI();
+  const [loading, setLoading] = useState(true);
   // console.log(result)
 
-  return (
-    <main className='grid grid-cols-12 w-screen h-screen text-sm'>
-      <div className='col-span-2 w-full hidden md:flex fixed md:relative bottom-0'>
-        <Sidebar />
+  const delayPage = () => {
+    setTimeout(() => {setLoading(false)}, 10000)
+  }
+
+  useEffect(() => {
+    delayPage();
+  }, [])
+
+  if(loading){
+    return(
+      <div className='w-screen bg-slate-900 h-screen flex flex-col gap-20 justify-center items-center'>
+        <p className='text-5xl md:text-6xl font-bold text-slate-300'>Echo Music</p>
+        <p class="loader"></p>
       </div>
-      <div className='col-span-10 w-full'>
-        <div className='fixed md:relative'>
-            <Header />
-        </div>
-        <div className=''>
-          <div className='pt-20 md:pt-0'>
-            <Recent />
-            <div className='grid grid-cols-1 md:grid-cols-6'>
-                <div className='md:col-span-2'><Trending /></div>
-                <div className='md:col-span-4'><TopPlaylists /></div>
-            </div>
-          </div>
-          <div className='w-full'>
-              <MusicPanel />
-          </div>
-        </div>
-        <div className='w-screen pb-36 md:pb-0 flex md:hidden'>
+    )
+  }
+
+  return (
+    <main className={`${theme ? 'bg-slate-900 text-slate-300' : 'bg-slate-300 text-slate-800'} w-screen transform duration-1000`}>
+      <main className='grid grid-cols-12 h-dvh text-sm'>
+        <div className='col-span-2 hidden md:flex fixed md:relative bottom-0'>
           <Sidebar />
         </div>
-      </div>
+        <div className='col-span-12 md:col-span-10'>
+          <div className='fixed md:relative'>
+              <Header />
+          </div>
+          <div className='h-screen md:h-fit overflow-y-scroll no-scrollbar'>
+            <div className='pt-20 md:pt-0'>
+              <Recent />
+              <div className='grid w-full md:grid-cols-6 md:gap-5 pb-16 md:pb-0'>
+                  <div className='md:col-span-2'><Trending /></div>
+                  <div className='md:col-span-4'><TopPlaylists /></div>
+              </div>
+            </div>
+            <div className='w-full absolute bottom-0'>
+                {/* <MusicPanel /> */}
+            </div>
+          </div>
+          <div className='w-screen pb-36 md:pb-0 flex md:hidden fixed bottom-0'>
+            <Sidebar />
+          </div>
+        </div>
+      </main>
     </main>
   )
 }

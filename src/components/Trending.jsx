@@ -16,16 +16,15 @@ const Trending = () => {
     <main className='w-screen md:w-full px-5 md:ps-5 md:pe-1 p-3 pt-5 text-xs'>
       <div>
         <h1 className='text-sm md:text-lg mb-3 font-bold'>Trending</h1>
-        <div className='grid gap-3 min-h-full md:min-h-0.5 w-full overflow-y-scroll no-scrollbar'>
+        <div className='grid gap-3 min-h-full md:h-72 w-full overflow-y-scroll no-scrollbar'>
           {
             musicList.slice(0, more).map((audio) => (
-              
-              <div key={audio.id}>
+              <div key={audio.id} className=''>
                 <AudioPlayer audio={audio} />
               </div>
             ))
           }
-          <button onClick={() => {setMore(more + 10);}} className={`text-center pt-5`}>More <br /> <FontAwesomeIcon icon={faChevronDown} className='animate-bounce' /></button>
+          <button onClick={() => setMore(more + 10)} className={`text-center pt-5 outline-none`}>More <br /> <FontAwesomeIcon icon={faChevronDown} className='animate-bounce' /></button>
         </div>
       </div>
     </main>

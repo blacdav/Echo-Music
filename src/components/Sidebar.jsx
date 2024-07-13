@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAPI } from '../context/API'
 
 const Sidebar = () => {
-    const { tracks } = useAPI();
+    const { albums, theme } = useAPI();
   return (
     <>
         <main className='w-full hidden md:flex'>
-            <div className='grid w-full h-screen px-5 py-8 bg-slate-800 text-white'>
+            <div className={`${theme ? 'bg-slate-950' : 'bg-slate-200'} font-semibold grid w-full h-screen px-5 py-8 transform duration-1000`}>
             <h1>Echo Music</h1>
 
             <ul className='flex flex-col gap-4 *:flex *:items-center *:gap-2 *:hover:cursor-pointer'>
@@ -42,17 +42,17 @@ const Sidebar = () => {
                 </li>
             </ul>
 
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col'>
                 <div className='flex items-center justify-between'>
                     <h2>Playlists</h2>
                     <FontAwesomeIcon icon={faSquarePlus} className='hover:cursor-pointer' />
                 </div>
                 <div className='grid gap-2'>
                     {
-                        tracks.slice(0, 4).map((res) => {
+                        albums.slice(0, 4).map((res) => {
                             <div key={res.id} className='flex items-center gap-2 hover:cursor-pointer'>
-                                <FontAwesomeIcon icon={faCirclePlay} />
-                                <p>{}</p>
+                                {/* <FontAwesomeIcon icon={faCirclePlay} /> */}
+                                <p>{res.name}</p>
                             </div>
                         })
                     }

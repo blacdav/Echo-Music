@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay, faCirclePause } from '@fortawesome/free-regular-svg-icons'
-// import { useAPI } from '../context/API'
+import MusicPanel from './MusicPanel'
+import { useAPI } from '../context/API'
 
 const AudioPlayer = ({audio}) => {
   const [isPlaying , setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
-    // const { isPlaying, setIsPlaying} = useAPI();
+    const { currentAudio, setCurrentAudio} = useAPI();
 
     useEffect(() => {
       const music = audioRef.current;
@@ -22,17 +23,27 @@ const AudioPlayer = ({audio}) => {
       }
     }, [setIsPlaying]);
 
+    useEffect(() => {
+      if (currentAudio && currentAudio !== audioRef.current) {
+        currentAudio.pause();
+        setIsPlaying(false)
+      }
+    }, [currentAudio]);
+
     const togglePlay = () => {
-        const music = audioRef.current;
-        
-        if(isPlaying){
-          music.pause();
-          setIsPlaying(!isPlaying);
-        } else {
-          music.play();
-          setIsPlaying(!isPlaying);
+      const music = audioRef.current;
+      
+      if(isPlaying){
+        music.pause();
+        setIsPlaying(false);
+      } else {
+        if (currentAudio && currentAudio !== audioRef.current) {
+          currentAudio.pause();
         }
-        
+        setCurrentAudio(music)
+        music.play();
+        setIsPlaying(true);
+      } 
     }
 
   return (
@@ -41,18 +52,19 @@ const AudioPlayer = ({audio}) => {
         <div className='flex gap-2 items-center'>
             <img src={audio.album_image} alt={audio.album_image} className='border h-16 w-16 rounded-md' />
             <div>
-                <h3 className='font-bold'>{audio.name}</h3>
-                <p>{audio.name}</p>
+              <h3 className='font-bold'>{audio.name}</h3>
+              <p>{audio.name}</p>
             </div>
         </div>
         <div className='flex items-center gap-2'>
             <audio ref={audioRef} src={audio.audio} />
             <p>{audio.duration.slice(0, 1)}:{audio.duration.slice(1, audio.duration.legnth)}</p>
             <div className='flex gap-2 text-lg'>
-                <FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} />
+              <FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} />
             </div>
         </div>
       </main>
+      {/* <MusicPanel audio={audio} /> */}
     </>
   )
 }

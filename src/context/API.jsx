@@ -6,8 +6,10 @@ const url = import.meta.env.VITE_API_URL;
 const clientId = import.meta.env.VITE_CLIENT_ID;
 
 export const APIProvider = ({ children }) => {
+    const [theme, setTheme] = useState(true)
     const [tracks, setTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
+    const [currentAudio, setCurrentAudio] = useState(false);
     const [isPlaying , setIsPlaying] = useState(false);
     const audioRef = useRef(null);
 
@@ -36,7 +38,7 @@ export const APIProvider = ({ children }) => {
             const data = await res.json();
             setTracks(data.results);
         } catch (error) {
-            console.error(`Error fetching Albums data ${error}`);
+            console.error(`Error fetching Tracks data ${error}`);
         }
     }
 
@@ -46,7 +48,7 @@ export const APIProvider = ({ children }) => {
     }, [])
 
     return(
-        <APIContext.Provider value={{ albums, tracks, isPlaying, setIsPlaying, audioRef }}>
+        <APIContext.Provider value={{ theme, setTheme, albums, tracks, isPlaying, setIsPlaying, audioRef, currentAudio, setCurrentAudio }}>
             { children }
         </APIContext.Provider>
     )
