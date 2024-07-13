@@ -47,7 +47,7 @@ const AudioPlayer = ({audio}) => {
         </div>
         <div className='flex items-center gap-2'>
             <audio ref={audioRef} src={audio.audio} />
-            <p>{audio.duration}</p>
+            <p>{audio.duration.slice(0, 1)}:{audio.duration.slice(1, audio.duration.legnth)}</p>
             <div className='flex gap-2 text-lg'>
                 <FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} />
             </div>
