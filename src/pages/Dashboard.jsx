@@ -13,7 +13,7 @@ const Dashboard = () => {
 
   return (
     <main className='grid grid-cols-12 w-screen h-screen text-sm'>
-      <div className='col-span-2 hidden md:flex fixed md:relative bottom-0'>
+      <div className='col-span-2 w-full hidden md:flex fixed md:relative bottom-0'>
         <Sidebar />
       </div>
       <div className='col-span-10 w-full'>

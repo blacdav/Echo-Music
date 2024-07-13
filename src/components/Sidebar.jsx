@@ -49,12 +49,12 @@ const Sidebar = () => {
                 </div>
                 <div className='grid gap-2'>
                     {
-                        tracks.slice(0, tracks.length).map((res) => (
+                        tracks.slice(0, 4).map((res) => {
                             <div key={res.id} className='flex items-center gap-2 hover:cursor-pointer'>
                                 <FontAwesomeIcon icon={faCirclePlay} />
-                                <p>{res.name}</p>
+                                <p>{}</p>
                             </div>
-                        ))
+                        })
                     }
                 </div>
             </div>

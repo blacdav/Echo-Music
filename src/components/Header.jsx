@@ -1,15 +1,16 @@
 import React from 'react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useAPI } from '../context/API'
+// import { useAPI } from '../context/API'
 
 const Header = () => {
-  const { tracks, albums, artists } = useAPI();
+  // const { tracks } = useAPI();
   
   return (
-    <main className='grid items-center w-full h-20 bg-slate-400'>
-      <div className='flex justify-between px-5'>
-        <div className='flex items-center gap-2 bg-slate-700 px-3 py-2 w-1/2 md:w-1/4 rounded-full'>
+    <main className='grid items-center w-screen md:w-full h-20 bg-slate-400'>
+      <div className='flex items-center justify-between px-5'>
+        <p className='font-bold text-xl'>Echo Music</p>
+        <div className='hidden md:flex items-center gap-2 bg-slate-700 px-3 py-2 w-1/2 md:w-1/4 rounded-full'>
             <FontAwesomeIcon icon={faSearch} />
             <input type="search" className='w-full bg-slate-700 border-none outline-0' />
         </div>
