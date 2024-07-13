@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay, faCirclePause } from '@fortawesome/free-regular-svg-icons'
-import { useAPI } from '../context/API'
+// import { useAPI } from '../context/API'
 
 const AudioPlayer = ({audio}) => {
-  // const [isPlaying , setIsPlaying] = useState(false);
-  // const audioRef = useRef(null);
+  const [isPlaying , setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
-    const {audioRef, isPlaying, setIsPlaying} = useAPI();
+    // const { isPlaying, setIsPlaying} = useAPI();
 
     useEffect(() => {
       const music = audioRef.current;
