@@ -6,6 +6,7 @@ import { useAPI } from '../context/API'
 
 const AudioPlayer = ({audio}) => {
   const [isPlaying , setIsPlaying] = useState(false);
+  const [loading, setLoading] = useState(true);
   const audioRef = useRef(null);
 
     const { currentAudio, setCurrentAudio} = useAPI();

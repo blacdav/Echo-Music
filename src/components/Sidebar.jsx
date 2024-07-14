@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAPI } from '../context/API'
 
 const Sidebar = () => {
-    const { albums, theme } = useAPI();
+    const { albums, theme, visible, setVisible } = useAPI();
   return (
     <>
         <main className='w-full hidden md:flex'>
@@ -13,7 +13,7 @@ const Sidebar = () => {
             <h1>Echo Music</h1>
 
             <ul className='flex flex-col gap-4 *:flex *:items-center *:gap-2 *:hover:cursor-pointer'>
-                <li>
+                <li onClick={() => setVisible(false)}>
                     <FontAwesomeIcon icon={faHome} />
                     <p>Home</p>
                 </li>
@@ -25,7 +25,7 @@ const Sidebar = () => {
                     <FontAwesomeIcon icon={faUser} />
                     <p>Artists</p>
                 </li>
-                <li>
+                <li onClick={() => setVisible(true)}>
                     <FontAwesomeIcon icon={faAddressCard} />
                     <p>Albums</p>
                 </li>

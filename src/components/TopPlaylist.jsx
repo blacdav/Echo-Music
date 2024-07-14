@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useAPI } from '../context/API'
 
 const TopPlaylist = () => {
   const { albums } = useAPI();
-
-  // useEffect(() => {
-    console.log(albums)
-  // }, [])
   
   return (
     <main className='w-screen md:w-full pt-5 px-5 md:pe-5 md:ps-1 p-3'>

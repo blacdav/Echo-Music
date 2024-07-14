@@ -7,6 +7,7 @@ const clientId = import.meta.env.VITE_CLIENT_ID;
 
 export const APIProvider = ({ children }) => {
     const [theme, setTheme] = useState(true)
+    const [visible, setVisible] = useState(false);
     const [tracks, setTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [currentAudio, setCurrentAudio] = useState(false);
@@ -48,7 +49,7 @@ export const APIProvider = ({ children }) => {
     }, [])
 
     return(
-        <APIContext.Provider value={{ theme, setTheme, albums, tracks, isPlaying, setIsPlaying, audioRef, currentAudio, setCurrentAudio }}>
+        <APIContext.Provider value={{ visible, setVisible, theme, setTheme, albums, tracks, isPlaying, setIsPlaying, audioRef, currentAudio, setCurrentAudio }}>
             { children }
         </APIContext.Provider>
     )

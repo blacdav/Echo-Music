@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.active {
+  @apply text-2xl underline
+}
+
 @layer utilities {
   /* @varients responsive { */
   .no-scrollbar::-webkit-scrollbar {
